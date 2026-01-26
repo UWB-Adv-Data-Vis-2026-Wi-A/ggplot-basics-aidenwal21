@@ -39,6 +39,14 @@ p + geom_point(mapping = aes(color = continent)) +
 
 
 ### Orignal graph
+```{r original graph}
+p <- ggplot(data = airquality, mapping = aes(x = Day, y = Ozone))
+
+p + geom_point(mapping = aes(color = Ozone))
+  
+
+
+```
 
 Continue practicing by accessing an unfamiliar data set from another package.
 You can load a dataset of your choice to show you can build a graphic using ggplot layers.
