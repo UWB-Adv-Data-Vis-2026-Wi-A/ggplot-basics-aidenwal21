@@ -1,6 +1,6 @@
 ---
 title: "Overview of basic features of ggplot"
-author: "Caleb Trujillo"
+author: "Aiden Wallace"
 date: "`r Sys.Date()`"
 output: html_document
 ---
@@ -12,32 +12,41 @@ pacman::p_load(tidyverse,nycflights13,gapminder,socviz)
 
 ### Figure 3.13
 
-Here you will make your figure. You can write a commit for each figure or error leading up to the figure that matches. Be sure to include commits of the transitions and name the figures such as "Recreating Figure 3.4" and "Recreating Figure 3.7". Practicing frequent commits is a great habit.
-
 ```{r 3.13 plot}
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
-p + geom_point() 
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "gam") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(x = "GDP Per Capita", y = "Life Expectancy in Years",
+       title = "Economic Growth and Life Expectancy",
+       subtitle = "Data points are country-years",
+       caption = "Source: Gapminder.")
 
 ```
 
 ### Figure 3.16
- 
-Here you will make your next figure.
 
 ```{r 3.16 plot}
 p <- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap,
-                          y = lifeExp,
-                          color = continent,
-                          fill = lifeExp))
-p + geom_smooth()
+            mapping = aes(x = gdpPercap, y = lifeExp))
+p + geom_point(mapping = aes(color = continent)) +
+  geom_smooth(method = "loess") +
+  scale_x_log10()
 ```
 
 
 ### Orignal graph
+```{r original graph}
+p <- ggplot(data = airquality, mapping = aes(x = Day, y = Ozone))
+
+p + geom_point(mapping = aes(color = Ozone))
+  
+
+
+```
 
 Continue practicing by accessing an unfamiliar data set from another package.
 You can load a dataset of your choice to show you can build a graphic using ggplot layers.
